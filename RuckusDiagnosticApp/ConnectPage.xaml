@@ -1,0 +1,70 @@
+﻿<Page x:Class="RuckusDiagnosticApp.ConnectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="ConnectPage">
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/background_image.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <!-- Define columns: left for the panel, right for the main content -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <!-- Left side panel -->
+            <ColumnDefinition Width="*"/>
+            <!-- Right side main page -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Left side panel -->
+        <StackPanel Grid.Column="0" Background="Transparent" Margin="10">
+            <TextBlock Text="Configuration" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+            <Button Content="rkscli -c !v54!" Margin="0,0,0,10"/>
+            <Button Content="What's your chow" Margin="0,0,0,10"/>
+            <Button Content="'Grrr' Sound if chow failed" Margin="0,0,0,10"/>
+            <Button Content="'Bow bow' if success" Margin="0,0,0,10"/>
+            <Button Content="Scan" Click="ScanButton_Click" Margin="0,0,0,10"/>
+            <Button Click="ExitButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                <Button.Content>
+                    <Image Source="Resources/exit.png" Width="20" Height="20" Stretch="Uniform" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <!-- Right side main page for console -->
+        <Grid Grid.Column="1" Background="Transparent" Margin="10">
+            <!-- List of Devices -->
+            <StackPanel Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock Text="Devices" FontSize="24" Foreground="SkyBlue" Margin="0,0,0,10" />
+
+                <ListView x:Name="DevicesListView" ItemsSource="{Binding Devices}" 
+                          SelectedItem="{Binding SelectedDevice}" Foreground="SkyBlue"
+                          Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="White" CornerRadius="10" Margin="5" Padding="10">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" Foreground="#333333" />
+                                    <TextBlock Text="{Binding BluetoothAddress}" FontSize="14" Foreground="#666666" />
+                                    <TextBlock Text="Signal Strength:" FontSize="14" Foreground="#999999" />
+                                    <ProgressBar Value="{Binding SignalStrength}" Maximum="100" Height="10" Foreground="#FF6200EE" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <Button Content="Connect to Ruckus AP" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Command="{Binding ConnectToRuckusAPCommand}" />
+        </Grid>
+    </Grid>
+</Page>

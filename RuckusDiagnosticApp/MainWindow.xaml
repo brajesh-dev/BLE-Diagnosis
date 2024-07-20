@@ -1,0 +1,54 @@
+﻿    <Window x:Class="RuckusDiagnosticApp.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Title="MainWindow" Height="600" Width="1000"
+            VerticalAlignment="Top" HorizontalAlignment="Center"
+            WindowStyle="None" AllowsTransparency="True"
+             Icon="Resources/ruckus_diagnostics_icon_haQ_icon.ico">
+    <!-- Set Opacity for the Window -->
+    <Window.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="Orange" Offset="0"/>
+                <GradientStop Color="Orange" Offset="1"/>
+            </LinearGradientBrush>
+        </Window.Background>
+    <Grid MouseDown="Grid_MouseDown">
+        <!-- Background Image -->
+            <Image Source="Resources/background_image.png" Stretch="Fill" />
+            <Border Background="White" CornerRadius="10" Margin="10" Padding="10" Opacity="0.6">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Main Menu" FontSize="24" FontWeight="Bold" Foreground="Orange" HorizontalAlignment="Center"/>
+                    <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click" Width="160">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/scan.png" Width="24" Height="22" Margin="0,0,10,0"/>
+                        <TextBlock Text="  BLE Watcher  " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/logs.png" Width="24" Height="24" Margin="-19,0,10,0"/>
+                            <TextBlock Text="RemoteAccess" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Resources/FileTransfer.png" Width="24" Height="24" Margin="-34,0,10,0"/>
+                        <TextBlock Text="File Transfer" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/settings.png" Width="24" Height="24" Margin="-64,0,10,0"/>
+                            <TextBlock Text="Settings" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                <Button Style="{StaticResource MenuButtonStyle}" Click="ExitButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/exit.png" Width="24" Height="24" Margin="-95,0,10,0"/>
+                            <TextBlock Text="Exit" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Window>
